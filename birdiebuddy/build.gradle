@@ -23,9 +23,28 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 	compileOnly 'org.projectlombok:lombok'
+
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//runtimeOnly 'com.h2database:h2' // 인메모리 데이터베이스
+
+	//hibernate
+	implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
+	implementation 'org.javassist:javassist:3.29.2-GA'
+
+	//mysql
+	implementation 'com.mysql:mysql-connector-j'
+
+	//spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.3.RELEASE'
+	testImplementation 'org.springframe.security:spring-security-test'
+
 }
 
 tasks.named('test') {
