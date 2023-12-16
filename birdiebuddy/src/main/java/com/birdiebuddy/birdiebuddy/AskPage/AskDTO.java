@@ -1,7 +1,9 @@
 package com.birdiebuddy.birdiebuddy.AskPage;
 
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class AskDTO {
     private Long postId;
     private Long userKey; //작성자

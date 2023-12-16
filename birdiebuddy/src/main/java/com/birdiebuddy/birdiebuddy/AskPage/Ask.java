@@ -1,6 +1,7 @@
 package com.birdiebuddy.birdiebuddy.AskPage;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -36,4 +37,10 @@ public class Ask {
     //작성일
     @Column
     private String date;
+
+    public void update(String title, String content)
+    {
+        this.title = title;
+        this.content = content;
+    }
 }
