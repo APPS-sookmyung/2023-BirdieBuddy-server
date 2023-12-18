@@ -1,7 +1,7 @@
-package com.birdiebuddy.birdiebuddy.Service;
+package com.birdiebuddy.birdiebuddy.service;
 
-import com.birdiebuddy.birdiebuddy.user_login.User;
-import com.birdiebuddy.birdiebuddy.user_login.UserRepository;
+import com.birdiebuddy.birdiebuddy.entity.User;
+import com.birdiebuddy.birdiebuddy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;

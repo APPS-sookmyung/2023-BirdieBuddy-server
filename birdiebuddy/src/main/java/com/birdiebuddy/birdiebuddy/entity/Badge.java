@@ -1,4 +1,4 @@
-package com.birdiebuddy.birdiebuddy.badge;
+package com.birdiebuddy.birdiebuddy.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
