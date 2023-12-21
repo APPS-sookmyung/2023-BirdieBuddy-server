@@ -1,10 +1,10 @@
-package com.birdiebuddy.birdiebuddy.entity;
+package com.birdiebuddy.birdiebuddy.bird.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,7 +17,7 @@ public class Bird {
     @Column(name="bird_id")
     private Long id;
 
-    @OneToMany(mappedBy = "birds_data", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bird_id", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Bird_habitat> habitats;
     private String name; //새이름
     private String habitat; //서식지
@@ -28,7 +28,5 @@ public class Bird {
     private String classed; //분류
     private String content; //설명
     private int size_tag; //사이즈 태그
-
-
 
 }

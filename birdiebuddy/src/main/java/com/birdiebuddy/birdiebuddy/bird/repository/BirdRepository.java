@@ -1,8 +1,8 @@
-package com.birdiebuddy.birdiebuddy.repository;
+package com.birdiebuddy.birdiebuddy.bird.repository;
 
 
 
-import com.birdiebuddy.birdiebuddy.entity.Bird;
+import com.birdiebuddy.birdiebuddy.bird.entity.Bird;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

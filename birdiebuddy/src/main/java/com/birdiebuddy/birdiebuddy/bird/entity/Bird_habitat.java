@@ -1,22 +1,19 @@
-package com.birdiebuddy.birdiebuddy.entity;
+package com.birdiebuddy.birdiebuddy.bird.entity;
 
-import com.birdiebuddy.birdiebuddy.entity.Bird;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Entity
 @RequiredArgsConstructor
 @Table(name="bird_habitat")
 public class Bird_habitat {
-    private final EntityManager em;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "table_id", nullable = false)
-    private Bird table_id;
+    @JoinColumn(name = "bird_id", nullable = false)
+    private Bird bird;
     private int habitat;
 }

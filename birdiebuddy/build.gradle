@@ -28,16 +28,17 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	//h2
-	implementation 'com.h2database:h2'
+	//implementation 'com.h2database:h2'
 
 	//hibernate
-	implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
-	implementation 'org.javassist:javassist:3.29.2-GA'
+	//implementation 'org.hibernate:hibernate-entitymanager'
+	//implementation 'org.javassist:javassist:3.29.2-GA'
 
 
 	//mysql
 	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 }
 
 tasks.named('test') {

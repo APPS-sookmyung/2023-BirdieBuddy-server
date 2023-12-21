@@ -1,7 +1,6 @@
-package com.birdiebuddy.birdiebuddy.dto;
+package com.birdiebuddy.birdiebuddy.bird.dto;
 
-import com.birdiebuddy.birdiebuddy.entity.Bird;
-import lombok.Builder;
+import com.birdiebuddy.birdiebuddy.bird.entity.Bird;
 
 public class BirdDto {
     private String name;
