@@ -27,8 +27,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	//h2
-	//implementation 'com.h2database:h2'
 
 	//hibernate
 	//implementation 'org.hibernate:hibernate-entitymanager'

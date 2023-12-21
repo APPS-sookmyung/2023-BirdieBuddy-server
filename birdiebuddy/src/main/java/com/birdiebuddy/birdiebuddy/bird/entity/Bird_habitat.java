@@ -14,6 +14,6 @@ public class Bird_habitat {
 
     @ManyToOne
     @JoinColumn(name = "bird_id", nullable = false)
-    private Bird bird;
+    private Bird bird_id;
     private int habitat;
 }
