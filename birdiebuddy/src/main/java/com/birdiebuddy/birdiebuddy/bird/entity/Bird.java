@@ -1,5 +1,6 @@
 package com.birdiebuddy.birdiebuddy.bird.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,9 @@ public class Bird {
     @Column(name="bird_id")
     private Long id;
 
-//    @OneToMany(mappedBy = "bird_id", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//    private List<Bird_habitat> habitats;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "bird_id", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Bird_habitat> habitats;
     private String name; //새이름
     private String habitat; //서식지
     private String size; //사이즈

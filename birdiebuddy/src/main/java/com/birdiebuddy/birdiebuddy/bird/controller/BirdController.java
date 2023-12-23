@@ -6,9 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,16 +21,65 @@ public class BirdController {
     public Result list(){
         List<Bird> birds=birdService.findBirds();
         List<BirdDto> collect=birds.stream()
-                .map(m->new BirdDto(m.getName(),m.getScien_name(),m.getImage(),m.getContent()))
+                .map(m->new BirdDto(m.getId(),m.getName(),m.getScien_name(),m.getImage(),m.getContent()))
                 .collect(Collectors.toList());
         return new Result(collect);
     }
 
-    @GetMapping("/BirdPage/{int:bird_id}")
-    public Result birdpage(){
+    @GetMapping("/BirdPage/{bird_id}")
+    public Result birdpage(@PathVariable("bird_id") Long bird_id){
+        Optional<Bird> bird=birdService.findBird(bird_id);
 
-        return null; 
+        return new Result(bird);
     }
+
+    @GetMapping("/PictureEncyclopediaPage")
+    public Result picList(){
+        List<Bird> birds=birdService.findBirds();
+
+        List<PicBirdDto> collect=birds.stream()
+                .map(m->new PicBirdDto(m.getName(),
+                        m.getScien_name(),
+                        m.getImage(),
+                        m.getContent(),
+                        m.getSize_tag(),
+                        m.getHabitats().stream()
+                                .map(habitatDto -> habitatDto.getHabitat())
+                                .collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
+
+        return new Result(collect);
+    }
+
+    //검색 api
+    @GetMapping("/search")
+    public Result search(){
+        return null;
+    }
+
+    @GetMapping("/FamilyEncyclopediaPage")
+    public Result familiyList(){
+        List<Bird> birds=birdService.findBirds();
+
+        Set<String> collect = birds.stream()
+                .map(m -> m.getClassed())
+                .collect(Collectors.toSet());
+
+        return new Result(collect);
+    }
+
+    @GetMapping("/FamilyEncyclopediaPage/{family}")
+    public Result family(@PathVariable("family")String classed){
+        List<Bird> birds=birdService.findByClass(classed);
+
+        List<familySearchDto> collect=birds.stream()
+                .map(m->new familySearchDto(m.getId(),m.getName(),
+                        m.getScien_name(),m.getContent(),m.getImage(),classed))
+                .collect(Collectors.toList());
+        return new Result(collect);
+    }
+
 
     @Data
     @AllArgsConstructor
@@ -40,9 +90,45 @@ public class BirdController {
     @Data
     @AllArgsConstructor
     static class BirdDto{
+        Long id;
         String name;
         String sci_name;
         String image;
         String content;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class PicBirdDto{
+        String name;
+        String sci_name;
+        String image;
+        String content;
+        int size_tag;
+        List<Integer> habitats;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class HabitatDto {
+        Long id;
+        int habitat;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class familyDto{
+        String classed;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class familySearchDto{
+        Long id;
+        String name;
+        String sci_name;
+        String image;
+        String content;
+        String classed;
     }
 }
