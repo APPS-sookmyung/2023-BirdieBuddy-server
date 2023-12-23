@@ -24,6 +24,13 @@ public class BirdController {
                 .collect(Collectors.toList());
         return new Result(collect);
     }
+
+    @GetMapping("/BirdPage/{int:bird_id}")
+    public Result birdpage(){
+
+        return null; 
+    }
+
     @Data
     @AllArgsConstructor
     static class Result<T>{

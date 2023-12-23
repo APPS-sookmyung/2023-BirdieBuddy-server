@@ -12,8 +12,8 @@ public class Bird_habitat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "bird_id", nullable = false)
-    private Bird bird_id;
+//    @ManyToOne
+//    @JoinColumn(name = "bird_id", nullable = false)
+//    private Bird bird_id;
     private int habitat;
 }
