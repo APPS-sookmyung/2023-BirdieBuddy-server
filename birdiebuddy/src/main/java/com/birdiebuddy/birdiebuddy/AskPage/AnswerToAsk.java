@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "AnswerToAsk")
 @Entity
@@ -32,4 +33,7 @@ public class AnswerToAsk {
     //작성 날짜, 시간
     @Column
     private String date;
+
+    @Column
+    private List<Long> answerList;
 }

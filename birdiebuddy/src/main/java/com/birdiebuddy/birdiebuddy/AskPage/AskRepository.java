@@ -8,14 +8,18 @@ import java.util.Optional;
 
 @Repository
 public interface AskRepository extends JpaRepository<Ask, Long> {
-    //글 검색
+
+    Long save(AskDTO askD);
+    List<Ask> findAll();
+
     Optional<Ask> findById(Long id);
 
     Optional<List<Ask>> findByUser(Long userKey);
 
     Optional<List<Ask>> findByTitle(String title);
 
-    //글 수정
-    Optional<Ask> update();
+    Optional<Ask> update(Long id, AskDTO askD); //글 수정
+
+    Optional<List<AnswerToAsk>> findMyAnswer(Long postId);
 
 }

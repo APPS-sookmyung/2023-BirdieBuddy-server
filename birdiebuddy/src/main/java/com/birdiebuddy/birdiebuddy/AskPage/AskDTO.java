@@ -3,6 +3,8 @@ package com.birdiebuddy.birdiebuddy.AskPage;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class AskDTO {
     private Long postId;
@@ -10,6 +12,8 @@ public class AskDTO {
     private String content;
     private String title;
     private String date;
+
+    private List<Long> answerList;
 
     @Builder
     public AskDTO(Ask ask)
@@ -29,6 +33,7 @@ public class AskDTO {
                 .content(content)
                 .title(title)
                 .date(date)
+                .answerList(answerList)
                 .build();
     }
 
