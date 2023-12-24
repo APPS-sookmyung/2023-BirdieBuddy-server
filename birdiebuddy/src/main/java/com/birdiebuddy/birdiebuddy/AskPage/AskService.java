@@ -1,6 +1,7 @@
 package com.birdiebuddy.birdiebuddy.AskPage;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +11,12 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class AskService {
+@Slf4j
+@Transactional(readOnly=true)
+public class AskService{
 
-    private final AskRepository askRepository;
+    private AskRepository askRepository;
+
 
     @Transactional
     public Long save(AskDTO askDTO)
@@ -51,13 +55,18 @@ public class AskService {
     }
 
     @Transactional
-    public Long update(Long id, AskDTO askDTO)
+    public Long update(Long id, AskDTO askD)
     {
         Ask ask = askRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("객체를 찾을 수 없습니다." + id));
 
-        ask.update(askDTO.getTitle(), askDTO.getContent());
+        ask.update(askD.getTitle(), askD.getContent());
 
         return ask.getPostId();
+    }
+
+    @Transactional
+    public List<AnswerToAsk> findMyAnswer(Long postId){
+        return null;
     }
 }
