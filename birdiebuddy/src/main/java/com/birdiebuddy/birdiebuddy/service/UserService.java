@@ -20,9 +20,9 @@ public class UserService {
 
     //email로 로그인
     @Transactional(readOnly = false)
-    public String login(String userEmail, String pw){
-        LocalDate localDate = LocalDate.now();
-        Optional<User> user = userRepository.findByEmail(userEmail);
+    public String login(String email, String pw){
+        //LocalDate localDate = LocalDate.now();
+        Optional<User> user = userRepository.findByEmail(email);
         User you = user.get();
 
         log.info("db password = {}, input password= = {}", user.get().getPw(), pw);

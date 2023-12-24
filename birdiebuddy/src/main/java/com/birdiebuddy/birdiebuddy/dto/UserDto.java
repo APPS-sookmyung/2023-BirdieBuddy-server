@@ -1,10 +1,12 @@
 package com.birdiebuddy.birdiebuddy.dto;
 
 import com.birdiebuddy.birdiebuddy.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UserDto {
     // id, email(name), pw, image를 가짐.
     private String userId;
@@ -42,8 +44,5 @@ public class UserDto {
     public void update(String img){
         this.image = img;
     }
-
-
-
 
 }
