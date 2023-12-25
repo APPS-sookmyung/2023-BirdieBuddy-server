@@ -33,8 +33,13 @@ public class UserService {
     }
     //email로 조회
 
-    //user 세이브?
+    @Transactional(readOnly = false)
+    //회원가입
     public long save(UserDto userDto){
+        Optional<User> isDuplicated = userRepository.findByEmail(userDto.toEntity().getEmail());
+        if (!isDuplicated.isEmpty()){
+            throw new IllegalStateException("Existing user");
+        }
         return userRepository.save(userDto.toEntity()).getId();
     }
 
@@ -53,7 +58,7 @@ public class UserService {
         return id;
     }
 
-    //user 조회
+    //user 전체 조회
     public List<User> findAll(){
         return userRepository.findAll();
     }
