@@ -1,17 +1,18 @@
-package com.birdiebuddy.birdiebuddy;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class dbtest {
+//package com.birdiebuddy.birdiebuddy;
+//
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
+//
+//public class dbtest {
 //    public static void main(String[] args){
 //        Connection con = null;
 //
 //        String server = "localhost"; // MySQL 서버 주소
 //        String database = "birdiebuddy"; // MySQL DATABASE 이름
-//        String user_name = "root"; //  MySQL 서버 아이디
-//        String password = "Kjy1234!"; // MySQL 서버 비밀번호
+
+//        String user_name = "chaeil"; //  MySQL 서버 아이디
+//        String password = "Mchaeil82!!"; // MySQL 서버 비밀번호
 //
 //        // 1.드라이버 로딩
 //        try {
@@ -40,6 +41,7 @@ public class dbtest {
 //                con.close();
 //        } catch (SQLException e) {}
 //    }
+//
+//
+//}
 
-
-}
