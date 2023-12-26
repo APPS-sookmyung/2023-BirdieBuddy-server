@@ -30,6 +30,7 @@ dependencies {
 	//mysql
 	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
 	//h2
 	implementation 'com.h2database:h2'
