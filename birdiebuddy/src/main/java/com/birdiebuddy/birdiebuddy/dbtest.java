@@ -10,6 +10,7 @@
 //
 //        String server = "localhost"; // MySQL 서버 주소
 //        String database = "birdiebuddy"; // MySQL DATABASE 이름
+
 //        String user_name = "chaeil"; //  MySQL 서버 아이디
 //        String password = "Mchaeil82!!"; // MySQL 서버 비밀번호
 //
@@ -23,10 +24,14 @@
 //
 //        // 2.연결
 //        try {
-//            con = DriverManager.getConnection("jdbc:mysql://" + server + "/" + database + "?useSSL=false", user_name, password);
+//            String url = "jdbc:mysql://" + server + "/" + database+"?useSSL=false";
+//            con = DriverManager.getConnection(url, user_name, password);
+//            System.out.println(con.toString());
 //            System.out.println("정상적으로 연결되었습니다.");
 //        } catch(SQLException e) {
 //            System.err.println("con 오류:" + e.getMessage());
+//            System.err.println("SQLState: "+e.getSQLState());
+//            System.err.println("VendorError: "+e.getErrorCode());
 //            e.printStackTrace();
 //        }
 //
@@ -39,3 +44,4 @@
 //
 //
 //}
+
