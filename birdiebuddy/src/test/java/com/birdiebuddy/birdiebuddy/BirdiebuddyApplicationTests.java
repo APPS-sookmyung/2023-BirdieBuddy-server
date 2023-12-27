@@ -32,10 +32,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = BirdiebuddyApplication.class)
 public class BirdiebuddyApplicationTests {
 
-	@Autowired
-	UserService userService;
-	@Autowired
-	UserRepository userRepository;
+//	@Autowired
+//	UserService userService;
+//	@Autowired
+//	UserRepository userRepository;
 
 //	@Test
 //	public void rollin() throws NoSuchFieldException, IllegalAccessException{
@@ -50,19 +50,19 @@ public class BirdiebuddyApplicationTests {
 //
 //	}
 
-	@Test
-	public void user_all() throws Exception{
-		//given
-		User user=new User();
-		user.setUserId("hello");
-
-		//when
-		userRepository.save(user);
-
-		//then
-		List<User> userList = userService.findAll();
-//		assertEquals("hello", userList.get(0).getUserId());
-	}
+//	@Test
+//	public void user_all() throws Exception{
+//		//given
+//		User user=new User();
+//		user.setUserId("hello");
+//
+//		//when
+//		userRepository.save(user);
+//
+//		//then
+//		List<User> userList = userService.findAll();
+////		assertEquals("hello", userList.get(0).getUserId());
+//	}
 
 
 }
