@@ -1,6 +1,6 @@
-package com.birdiebuddy.birdiebuddy.dto;
+package com.birdiebuddy.birdiebuddy.user.dto;
 
-import com.birdiebuddy.birdiebuddy.entity.User;
+import com.birdiebuddy.birdiebuddy.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

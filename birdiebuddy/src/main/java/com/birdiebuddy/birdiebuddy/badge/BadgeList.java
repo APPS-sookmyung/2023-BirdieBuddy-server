@@ -1,7 +1,7 @@
 package com.birdiebuddy.birdiebuddy.badge;
 
-import com.birdiebuddy.birdiebuddy.entity.Badge;
-import com.birdiebuddy.birdiebuddy.service.BadgeService;
+import com.birdiebuddy.birdiebuddy.user.entity.Badge;
+import com.birdiebuddy.birdiebuddy.user.service.BadgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

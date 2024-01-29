@@ -1,6 +1,6 @@
-package com.birdiebuddy.birdiebuddy.repository;
+package com.birdiebuddy.birdiebuddy.user.repository;
 
-import com.birdiebuddy.birdiebuddy.entity.User;
+import com.birdiebuddy.birdiebuddy.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

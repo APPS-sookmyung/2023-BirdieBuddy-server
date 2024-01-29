@@ -1,8 +1,8 @@
-package com.birdiebuddy.birdiebuddy.controller;
+package com.birdiebuddy.birdiebuddy.user.controller;
 
-import com.birdiebuddy.birdiebuddy.dto.UserDto;
-import com.birdiebuddy.birdiebuddy.entity.User;
-import com.birdiebuddy.birdiebuddy.service.UserService;
+import com.birdiebuddy.birdiebuddy.user.dto.UserDto;
+import com.birdiebuddy.birdiebuddy.user.entity.User;
+import com.birdiebuddy.birdiebuddy.user.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class UserController {
     private final UserService userService;
 
     //회원가입
-    @PostMapping("/SignInPage")
+    @PostMapping("/api/user/signin")
     public long signUp(@RequestBody UserDto userDto){
         log.info("userId = {}, password = {}", userDto.toEntity().getUserId(), userDto.toEntity().getPw());
         log.info("email = {}, image = {}, id = {}", userDto.toEntity().getEmail(), userDto.toEntity().getImage(), userDto.toEntity().getId());
@@ -42,7 +42,7 @@ public class UserController {
 //    }
 
     //로그인
-    @PostMapping("/StartPage")
+    @PostMapping("/api/user/login")
     public ResponseEntity login(@RequestBody UserDto userDto){
         log.info("userId = {}, password = {}", userDto.toEntity().getUserId(), userDto.toEntity().getPw());
         log.info("email = {}, image = {}", userDto.toEntity().getEmail(), userDto.toEntity().getImage());
@@ -58,7 +58,7 @@ public class UserController {
         private T data;
     }
 
-    @GetMapping("/allUserPage")
+    @GetMapping("/api/user/allusers")
     public Result list(){
         List<User> users=userService.findAll();
         List<UserDto> collect = users.stream()
