@@ -1,7 +1,7 @@
-package com.birdiebuddy.birdiebuddy.service;
+package com.birdiebuddy.birdiebuddy.user.service;
 
-import com.birdiebuddy.birdiebuddy.entity.Badge;
-import com.birdiebuddy.birdiebuddy.repository.BadgeRepository;
+import com.birdiebuddy.birdiebuddy.user.entity.Badge;
+import com.birdiebuddy.birdiebuddy.user.repository.BadgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class BirdController {
     private final BirdService birdService;
 
-    @GetMapping("/EncyclopediaPage")
+    @GetMapping("/api/encyclopedia")
     public Result list(){
         List<Bird> birds=birdService.findBirds();
         List<BirdDto> collect=birds.stream()
@@ -26,23 +26,25 @@ public class BirdController {
         return new Result(collect);
     }
 
-    @GetMapping("/BirdPage/{bird_id}")
+    @GetMapping("/api/bird/{bird_id}")
     public Result birdpage(@PathVariable("bird_id") Long bird_id){
         Optional<Bird> bird=birdService.findBird(bird_id);
 
         return new Result(bird);
     }
 
-    @GetMapping("/PictureEncyclopediaPage")
+    @GetMapping("/api/pictureEncyclopedia")
     public Result picList(){
         List<Bird> birds=birdService.findBirds();
 
         List<PicBirdDto> collect=birds.stream()
-                .map(m->new PicBirdDto(m.getName(),
+                .map(m->new PicBirdDto(
+                        m.getId(),
+                        m.getName(),
                         m.getScien_name(),
                         m.getImage(),
                         m.getContent(),
-                        m.getSize_tag(),
+                        Collections.singletonList(m.getSize_tag()),
                         m.getHabitats().stream()
                                 .map(habitatDto -> habitatDto.getHabitat())
                                 .collect(Collectors.toList())
@@ -58,7 +60,7 @@ public class BirdController {
         return null;
     }
 
-    @GetMapping("/FamilyEncyclopediaPage")
+    @GetMapping("/api/familyEncyclopedia")
     public Result familiyList(){
         List<Bird> birds=birdService.findBirds();
 
@@ -69,7 +71,7 @@ public class BirdController {
         return new Result(collect);
     }
 
-    @GetMapping("/FamilyEncyclopediaPage/{family}")
+    @GetMapping("/api/familyEncyclopedia/{family}")
     public Result family(@PathVariable("family")String classed){
         List<Bird> birds=birdService.findByClass(classed);
 
@@ -100,11 +102,12 @@ public class BirdController {
     @Data
     @AllArgsConstructor
     static class PicBirdDto{
+        Long id;
         String name;
         String sci_name;
         String image;
         String content;
-        int size_tag;
+        List<Integer> size_tag;
         List<Integer> habitats;
     }
 
