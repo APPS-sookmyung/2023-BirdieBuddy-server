@@ -3,6 +3,10 @@ package com.birdiebuddy.birdiebuddy.user.entity;
 import lombok.*;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +15,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @NoArgsConstructor//(access = AccessLevel.PROTECTED)
-public class User{
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //primary key
@@ -53,5 +57,37 @@ public class User{
 
     //재화 구매
     //소유 씨앗 > itm의 씨앗값 -> 소유 -= itm.seed && Item에 해당 itm 추가
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return List.of(new SimpleGrantedAuthority("MEMBER"));
+    }
+    @Override
+    public String getUserName(){
+        return email;
+    } //사용자 고유 id 반환
+
+    @Override
+    public String getPassword(){
+        return pw;
+    } //사용자 패스워드 반환
+    @Override
+    public boolean isAccountNonExpired(){
+        return true;
+    } //계정 만료 여부
+    @Override
+    public boolean isAccountNonLocked(){
+        return true;
+    } //계정 잠금 여부 반환
+
+    @Override
+    public boolean isCredentialsNonExpired(){
+        return true;
+    } //패스워드 만료여부
+    @Override
+    public boolean isEnabled(){
+        return true;
+    } //계정 사용 가능 여부
+
 
 }

@@ -5,6 +5,7 @@ import com.birdiebuddy.birdiebuddy.user.entity.User;
 import com.birdiebuddy.birdiebuddy.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +16,14 @@ import java.util.Optional;
 @Service
 @Slf4j
 @Transactional(readOnly=true)
-public class UserService {
+public class UserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
+
+    @Override
+    public User loadUserByUsername(String email){
+        return userRepository.findByEmail(email)
+                .orElseThrow(()-> new IllegalArgumentException((email)));
+    }
 
     //email로 로그인
     @Transactional(readOnly = false)
