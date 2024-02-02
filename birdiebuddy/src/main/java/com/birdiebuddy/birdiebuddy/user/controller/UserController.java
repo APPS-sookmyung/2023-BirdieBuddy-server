@@ -52,6 +52,14 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
+    //로그아웃
+    @PostMapping("/api/user/logout")
+    public ResponseEntity logout(@RequestBody UserDto userDto){
+        log.info("User logged out: userId = {}", userDto.toEntity().getUserId());
+        // session invallidation
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @Data
     @AllArgsConstructor
     static class  Result<T>{
