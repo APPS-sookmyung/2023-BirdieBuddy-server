@@ -62,15 +62,17 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return List.of(new SimpleGrantedAuthority("MEMBER"));
     }
-    @Override
-    public String getUserName(){
-        return email;
-    } //사용자 고유 id 반환
 
     @Override
     public String getPassword(){
         return pw;
     } //사용자 패스워드 반환
+
+    @Override
+    public String getUsername() {
+        return email; //사용자 고유 id 반환
+    }
+
     @Override
     public boolean isAccountNonExpired(){
         return true;

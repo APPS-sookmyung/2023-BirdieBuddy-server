@@ -24,7 +24,6 @@ public class UserDetailService implements UserDetailsService {
         return userRepository.findByEmail(email)
                 .orElseThrow(()-> new IllegalArgumentException((email)));
     }
-
     //email로 로그인
     @Transactional(readOnly = false)
     public String login(String email, String pw){

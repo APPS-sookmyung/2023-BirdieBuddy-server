@@ -4,8 +4,10 @@ import com.birdiebuddy.birdiebuddy.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
     // id, email(name), pw, image를 가짐.

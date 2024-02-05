@@ -2,7 +2,7 @@ package com.birdiebuddy.birdiebuddy.user.controller;
 
 import com.birdiebuddy.birdiebuddy.user.dto.UserDto;
 import com.birdiebuddy.birdiebuddy.user.entity.User;
-import com.birdiebuddy.birdiebuddy.user.service.UserDetailsService;
+import com.birdiebuddy.birdiebuddy.user.service.UserDetailService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserController {
 
-    private final UserDetailsService userService;
+    private final UserDetailService userService;
 
     //회원가입
     @PostMapping("/api/user/signin")
