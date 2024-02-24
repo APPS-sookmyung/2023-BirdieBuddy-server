@@ -1,10 +1,13 @@
-package com.birdiebuddy.birdiebuddy.AskPage;
+package com.birdiebuddy.birdiebuddy.AskPage.DTO;
 
+import com.birdiebuddy.birdiebuddy.AskPage.Entity.AnswerToAsk;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class AnswerDTO {
-    private String commentId;
-    private String postId;
+    private Long answerId;
+    private Long postId;
     private Long user;
     private String content;
     private String date;
@@ -12,8 +15,8 @@ public class AnswerDTO {
     @Builder
     public AnswerDTO(AnswerToAsk answer)
     {
-        this.commentId = answer.getCommentId();
-        this.postId = answer.getPostId();
+        this.answerId = answer.getAnswerId();
+        this.postId = answer.getAskId();
         this.user = answer.getUser();
         this.content = answer.getContent();
         this.date = answer.getDate();
@@ -22,8 +25,8 @@ public class AnswerDTO {
     public AnswerToAsk ToEntity()
     {
         return AnswerToAsk.builder()
-                .commentId(commentId)
-                .postId(postId)
+                .answerId(answerId)
+                .askId(postId)
                 .user(user)
                 .content(content)
                 .date(date)

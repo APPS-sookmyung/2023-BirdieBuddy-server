@@ -1,5 +1,6 @@
-package com.birdiebuddy.birdiebuddy.AskPage;
+package com.birdiebuddy.birdiebuddy.AskPage.DTO;
 
+import com.birdiebuddy.birdiebuddy.AskPage.Entity.Ask;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Getter
 public class AskDTO {
-    private Long postId;
+    private Long askId;
     private Long userKey; //작성자
     private String content;
     private String title;
@@ -18,7 +19,7 @@ public class AskDTO {
     @Builder
     public AskDTO(Ask ask)
     {
-        this.postId = ask.getPostId();
+        this.askId = ask.getAskId();
         this.userKey = ask.getUserKey();
         this.content = ask.getContent();
         this.title = ask.getTitle();
@@ -29,7 +30,7 @@ public class AskDTO {
     {
         return Ask.builder()
                 .userKey(userKey)
-                .postId(postId)
+                .askId(askId)
                 .content(content)
                 .title(title)
                 .date(date)
