@@ -1,9 +1,11 @@
 package com.birdiebuddy.birdiebuddy.record.entity;
 
+import com.birdiebuddy.birdiebuddy.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,13 +14,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "record")
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @Setter
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
+    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id") //연관관계 매핑
+    private User user_id;
 
     @Column
     private Long group_id; //같은 게시글의 그룹인지
