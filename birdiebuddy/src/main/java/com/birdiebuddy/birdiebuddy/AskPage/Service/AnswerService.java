@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -18,7 +17,19 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     @Transactional
-    public List<AnswerToAsk> findAnswerRoot(Long id)
+    public Long save(AnswerDTO answerDTO) {return answerRepository.save(answerDTO.ToEntity()).getAnswerId();}
+
+    @Transactional
+    public AnswerDTO findById(Long id)
+    {
+        AnswerToAsk answer = answerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Not Found Answer: " + id));
+
+        return new AnswerDTO(answer);
+    }
+
+    @Transactional
+    public List<AnswerToAsk> findAnswerAsk(Long id)
     {
         List<AnswerToAsk> answers = answerRepository.findAll()
                 .stream().filter(answer -> answer.getAskId()

@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class AskService {
@@ -19,16 +23,51 @@ public class AskService {
         return askRepository.save(askDTO.toEntity()).getAskId();
     }
 
-    @Transactional
-    public Long update(Long id, AskDTO askDTO)
+    public AskDTO findById(Long id)
     {
         Ask ask = askRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("객체를 찾을 수 없습니다." + id));
+                .orElseThrow(()-> new IllegalArgumentException("Not Found Ask:  " + id));
 
-        ask.update(askDTO.getTitle(), askDTO.getContent());
-
-        return ask.getAskId();
+        return new AskDTO(ask);
     }
+
+    @Transactional
+    public List<AskDTO> findByUser(Long id)
+    {
+        List<Ask> ask = askRepository.findByUserKey(id)
+                .orElseThrow(() -> new IllegalArgumentException("Not Found This Users Post " + id));
+
+        List<AskDTO> askD = new ArrayList<AskDTO>();
+        for (Ask a: ask){
+            askD.add(new AskDTO(a));
+        }
+
+        return askD;
+    }
+
+    @Transactional
+    public List<AskDTO> findByTitle(String title)
+    {
+        List<Ask> ask = askRepository.findByTitle(title)
+                .orElseThrow(() -> new IllegalArgumentException("Not Found Post " + title));
+
+        List<AskDTO> askD = new ArrayList<AskDTO>();
+        for (Ask a: ask) {
+            askD.add(new AskDTO(a));
+        }
+
+        return askD;
+    }
+//    @Transactional
+//    public Long update(Long id, AskDTO askDTO)
+//    {
+//        Ask ask = askRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("객체를 찾을 수 없습니다." + id));
+//
+//        ask.update(askDTO.getTitle(), askDTO.getContent());
+//
+//        return ask.getAskId();
+//    }
 
     //    @Transactional
 //    public List<AskDTO> findByUser(Long user)
