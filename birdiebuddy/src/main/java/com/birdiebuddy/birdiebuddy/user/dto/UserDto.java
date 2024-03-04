@@ -23,7 +23,7 @@ public class UserDto {
 //        this.pw = pw;
 //        this.image = img;
 //    }
-//
+
     @Builder
     public UserDto(User user){
         this.userId = user.getUserId();

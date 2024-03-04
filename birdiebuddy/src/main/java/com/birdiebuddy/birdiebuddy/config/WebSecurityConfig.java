@@ -4,7 +4,6 @@ import com.birdiebuddy.birdiebuddy.user.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,8 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    private final UserDetailsService userService;
-
     @Bean
     public WebSecurityCustomizer configure(){
         return (web) -> web.ignoring()
@@ -30,7 +27,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests -> //authorizeRequest는 authorizeHttpRequest로 바뀜
                         authorizeRequests
-                                .requestMatchers("/api/user/signin", "/api/user/login","/api/user/allusers").permitAll()
+                                .requestMatchers("/api/user/signin", "/api/user/login","/api/user/allusers","/exception/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin->
@@ -55,7 +52,6 @@ public class WebSecurityConfig {
 
         return authBuilder.build();
     }
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
