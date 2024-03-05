@@ -2,13 +2,18 @@ package com.birdiebuddy.birdiebuddy.user.controller;
 
 import com.birdiebuddy.birdiebuddy.user.dto.UserDto;
 import com.birdiebuddy.birdiebuddy.user.entity.User;
-import com.birdiebuddy.birdiebuddy.user.service.UserService;
+import com.birdiebuddy.birdiebuddy.user.service.SaveService;
+import com.birdiebuddy.birdiebuddy.user.service.UserDetailService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,14 +24,15 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserController {
 
-    private final UserService userService;
+    private final UserDetailService userService;
+    private final SaveService saveService;
 
     //회원가입
     @PostMapping("/api/user/signin")
     public long signUp(@RequestBody UserDto userDto){
         log.info("userId = {}, password = {}", userDto.toEntity().getUserId(), userDto.toEntity().getPw());
         log.info("email = {}, image = {}, id = {}", userDto.toEntity().getEmail(), userDto.toEntity().getImage(), userDto.toEntity().getId());
-        return userService.save(userDto);
+        return saveService.save(userDto);
     }
 
     //조회
@@ -50,6 +56,13 @@ public class UserController {
             return new ResponseEntity(HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    //로그아웃
+    @PostMapping("/api/user/logout")
+    public ResponseEntity logout(HttpServletRequest req, HttpServletResponse res){
+        new SecurityContextLogoutHandler().logout(req, res, SecurityContextHolder.getContext().getAuthentication());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @Data
