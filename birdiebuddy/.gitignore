@@ -40,3 +40,4 @@ out/
 
 ### IntelliJ IDEA ###
 application.properties
+/src/main/resources/ssl/keystore.p12
