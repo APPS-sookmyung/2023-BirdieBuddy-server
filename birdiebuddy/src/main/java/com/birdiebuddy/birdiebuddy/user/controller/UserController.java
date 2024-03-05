@@ -51,7 +51,7 @@ public class UserController {
     @PostMapping("/api/user/login")
     public ResponseEntity login(@RequestBody UserDto userDto){
         log.info("userId = {}, password = {}", userDto.toEntity().getUserId(), userDto.toEntity().getPw());
-        log.info("email = {}, image = {}", userDto.toEntity().getEmail(), userDto.toEntity().getImage());
+        log.info("email = {}, image = {}, id = {}", userDto.toEntity().getEmail(), userDto.toEntity().getImage(), userDto.toEntity().getId());
         if (userService.login(userDto.toEntity().getEmail(), userDto.toEntity().getPw()).equals("Success")){
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -62,6 +62,7 @@ public class UserController {
     @PostMapping("/api/user/logout")
     public ResponseEntity logout(HttpServletRequest req, HttpServletResponse res){
         new SecurityContextLogoutHandler().logout(req, res, SecurityContextHolder.getContext().getAuthentication());
+        log.info("successfully logged out");
         return new ResponseEntity(HttpStatus.OK);
     }
 

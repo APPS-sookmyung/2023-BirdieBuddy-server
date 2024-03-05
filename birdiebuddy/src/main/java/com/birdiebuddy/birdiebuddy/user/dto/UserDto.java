@@ -16,14 +16,6 @@ public class UserDto {
     private String pw;
     private String image;
 
-//    @Builder
-//    public UserDto(String userId, String email, String pw, String img){
-//        this.userId = userId;
-//        this.email = email;
-//        this.pw = pw;
-//        this.image = img;
-//    }
-
     @Builder
     public UserDto(User user){
         this.userId = user.getUserId();

@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -54,9 +53,6 @@ public class User implements UserDetails {
     public void update(String img) {
         this.image = img;
     }
-
-    //재화 구매
-    //소유 씨앗 > itm의 씨앗값 -> 소유 -= itm.seed && Item에 해당 itm 추가
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
