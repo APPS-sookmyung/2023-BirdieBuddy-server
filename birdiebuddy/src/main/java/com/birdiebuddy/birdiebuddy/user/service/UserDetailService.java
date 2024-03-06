@@ -28,7 +28,7 @@ public class UserDetailService implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new UsernameNotFoundException(email));
         return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(), Collections.emptyList());
-    } // 사용자 조회 (by email)
+    } /*사용자 조회 (by email)*/
 
     @Transactional(readOnly = false)
     public String login(String email, String pw){
@@ -37,27 +37,29 @@ public class UserDetailService implements UserDetailsService {
 
         log.info("db password = {}, input password= = {}", you.getPw(), pw);
         if (you.getPw().equals(pw)){
+            //log.info("Success");
             return "Success";
         }
+        //log.info("Failed");
         return "Failed";
-    } // 로그인 (by email)
+    } /*로그인 (by email)*/
 
     public UserDto findById(Long id){
         User entity = userRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("No Such User id = " + id));
         return new UserDto(entity);
-    } // 조회
+    } /*조회*/
 
     public Long update(Long id, UserDto userDto){
         User user = userRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("No Such User id = " + id));
         user.update(userDto.getImage());
         return id;
-    } // 수정
+    } /*수정*/
 
     public List<User> findAll(){
         return userRepository.findAll();
-    } // user 전체 조회
+    } /*user 전체 조회*/
 
 
 }
