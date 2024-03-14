@@ -12,11 +12,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AWSS3Service {
-    @Value("${cloud.aws.s3.bucket}")
+    @Value("${cloud.aws.s3.bucketName}")
     private String bucket;
 
     private final AmazonS3 amazonS3;
-
-
 
 }
