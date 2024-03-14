@@ -47,8 +47,10 @@ dependencies {
 	implementation 'com.h2database:h2'
 
 	//hibernate
-	//implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
+	//implementation 'org.hibernate:hibernate-entitymanager'
 	implementation 'org.javassist:javassist:3.29.2-GA'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
+
 
 	//s3
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'

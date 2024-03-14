@@ -58,7 +58,7 @@ public class RecordService {
                 record.setLocation(recordDTO.getLocation());
                 record.setContent(recordDTO.getContent());
                 record.setCount(recordDTO.getCount());
-                record.setUser_id(user.get());
+                record.setUser(user.get());
                 record.setGroup_id(groupId); // 같은 스레드에 속하는 기록을 그룹화하기 위해 그룹 ID 설정
 
                 // 기록 저장
@@ -67,7 +67,7 @@ public class RecordService {
                 // 기록에 대한 이미지 처리
                 for (String imageUrl : recordDTO.getImageUrls()) {
                     RecordImage recordImage = new RecordImage();
-                    recordImage.setPost_id(savedRecord);
+                    recordImage.setRecord(savedRecord);
                     recordImage.setImage(imageUrl);
                     recordImageRepository.save(recordImage);
                 }

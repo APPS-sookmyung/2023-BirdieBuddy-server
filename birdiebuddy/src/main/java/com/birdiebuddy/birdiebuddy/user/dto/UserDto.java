@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserDto {
     // id, email(name), pw, image를 가짐.
     private String userId;

@@ -1,5 +1,7 @@
 package com.birdiebuddy.birdiebuddy.user.entity;
 
+import com.birdiebuddy.birdiebuddy.record.entity.Record;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -29,6 +31,12 @@ public class User implements UserDetails {
     private String pw;
     @Column(name = "image")
     private String image;
+
+    //[kjy] Record entity와 연관관계 매핑
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Record> records;
+
 
 //    // 동정횟수, 도움횟수, 씨앗(아이템), 포스트(동정) 관리
 //    @Column(name = "watch")

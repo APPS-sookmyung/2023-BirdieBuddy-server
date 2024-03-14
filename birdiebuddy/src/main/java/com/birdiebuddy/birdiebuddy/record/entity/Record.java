@@ -21,10 +21,9 @@ public class Record {
     @Column(name="id")
     private Long id;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id") //연관관계 매핑
-    private User user_id;
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column
     private Long group_id; //같은 게시글의 그룹인지
@@ -42,9 +41,9 @@ public class Record {
     @Column
     private int count; //새 카운트 수
 
-    @Column
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "record", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RecordImage> image; //이미지
+
 
 
 }

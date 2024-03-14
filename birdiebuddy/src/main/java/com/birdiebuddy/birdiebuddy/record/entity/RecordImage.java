@@ -1,9 +1,7 @@
 package com.birdiebuddy.birdiebuddy.record.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -15,9 +13,9 @@ public class RecordImage {
     @Column(name="id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="post_id")
-    private Record post_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Record record;
 
     @Column
     private String image;
